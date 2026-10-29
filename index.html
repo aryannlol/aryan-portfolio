@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aryan Mandlik – Resume Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#ece1d9;--grey:#cfcac4;--sage:#a8b080;--wine:#7f0519;--ink:#2c241e;--muted:#6b6058;--fw:340px;--fh:440px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:#241d18;font-family:'IBM Plex Mono',ui-monospace,monospace;color:var(--ink)}
+button{font:inherit;cursor:pointer}
+#track{height:1700vh}
+#stage{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#3a3029,#241d18 75%)}
+#paper{position:absolute;z-index:2;left:50%;top:50%;width:640px;min-height:900px;background:var(--cream);cursor:pointer;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);will-change:transform;font-family:'Fraunces',Georgia,serif}
+#front{padding:38px 44px 34px}
+:is(#paper,#sheet) h1{font-size:38px;line-height:1.05;letter-spacing:-.02em}
+:is(#paper,#sheet) .role{font:400 11px/1.5 'IBM Plex Mono',monospace;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
+:is(#paper,#sheet) h2{font-size:14px;margin:15px 0 6px;border-bottom:1px solid var(--grey);padding-bottom:3px}
+:is(#paper,#sheet) p,:is(#paper,#sheet) li{font-size:10.5px;line-height:1.42;color:#3d342d}
+:is(#paper,#sheet) ul{list-style:none;padding:0}
+:is(#paper,#sheet) li.b{padding-left:11px;position:relative;margin-top:2px}
+:is(#paper,#sheet) li.b::before{content:"–";position:absolute;left:0;color:var(--wine)}
+:is(#paper,#sheet) a{color:var(--wine);text-decoration:underline;text-underline-offset:2px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.row b{font-size:12.5px}.row span{font:400 10px 'IBM Plex Mono',monospace;color:var(--muted);white-space:nowrap}
+.proj{padding:6px 8px;margin:2px -8px;border-radius:3px}
+.proj:hover{background:rgba(168,176,128,.3)}
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px}
+.sk p{font:400 10px/1.5 'IBM Plex Mono',monospace}
+#back{position:absolute;inset:0;display:flex;align-items:center}
+#cbox{width:100%;padding:0 52px}
+:is(#paper,#sheet) #cbox h2{font-size:40px;border:0;margin:0 0 10px;letter-spacing:-.02em}
+:is(#paper,#sheet) #cbox p{font:400 13px/1.5 'IBM Plex Mono',monospace;margin-top:12px}
+:is(#paper,#sheet) #cbox p b{color:var(--wine);font-weight:500}
+
+/* folder: two flat halves that swing open */
+#fl,#fr{position:absolute;z-index:3;left:50%;top:50%;width:calc(var(--fw)/2);height:var(--fh);cursor:pointer;
+  background:linear-gradient(160deg,#ecd49b,#d4b06a 60%,#c49c58);outline:2px dashed rgba(110,75,30,.4);outline-offset:-12px;
+  filter:drop-shadow(0 22px 28px rgba(0,0,0,.55))}
+#fl{border-radius:8px 0 0 8px;box-shadow:inset 0 0 0 2px rgba(110,75,30,.3),inset 14px 0 18px -10px rgba(255,255,255,.35)}
+#fr{border-radius:0 8px 8px 0;box-shadow:inset 0 0 0 2px rgba(110,75,30,.3),inset -14px 0 18px -10px rgba(0,0,0,.25)}
+#fl::before{content:"";position:absolute;left:0;top:-26px;width:46%;height:28px;background:#e2c78c;border-radius:9px 16px 0 0;box-shadow:inset 0 0 0 2px rgba(110,75,30,.3)}
+#fl::after,#fr::after{content:"";position:absolute;top:0;bottom:0;width:10px;background:linear-gradient(90deg,transparent,rgba(70,45,15,.5))}
+#fl::after{right:0}#fr::after{left:0;transform:scaleX(-1)}
+#flabel{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--cream);padding:12px 18px;border-radius:3px;
+  text-align:center;font:700 clamp(15px,4vw,21px)/1.15 'Fraunces',Georgia,serif;color:var(--ink);pointer-events:none;white-space:nowrap}
+#flabel small{display:block;margin-top:5px;font:400 10px 'IBM Plex Mono',monospace;color:var(--wine);letter-spacing:.08em;text-transform:uppercase}
+
+#hint{position:fixed;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;padding:0 16px;font-size:12px;color:var(--grey);pointer-events:none;transition:opacity .3s;z-index:7}
+#dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:8}
+#dots button{width:10px;height:10px;border-radius:50%;border:1px solid var(--grey);background:transparent;padding:0}
+#dots button.on{background:var(--sage);border-color:var(--sage)}
+#plain{position:fixed;z-index:9;left:12px;top:calc(12px + env(safe-area-inset-top,0px));background:var(--cream);color:var(--ink);border:2px solid var(--wine);border-radius:999px;padding:8px 14px;font:500 12px 'IBM Plex Mono',monospace}
+#plain:hover{background:var(--sage)}
+.slot{position:fixed;inset:0;display:grid;place-items:center;visibility:hidden;opacity:0;padding:20px 34px 20px 20px;z-index:6}
+.card{position:relative;width:min(580px,100%);max-height:100%;overflow:auto;background:var(--cream);border-radius:6px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:'Fraunces',Georgia,serif}
+.card h3{font-size:28px;line-height:1.1;letter-spacing:-.01em;padding-right:34px}
+.x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:1px solid var(--grey);background:var(--cream);color:var(--ink);font-size:20px;line-height:1;display:grid;place-items:center;z-index:2}
+.x:hover{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.badge{display:inline-block;margin-top:8px;font:500 11px 'IBM Plex Mono',monospace;color:var(--wine);border:1px solid var(--wine);border-radius:3px;padding:2px 7px}
+.card p{font-size:14px;line-height:1.55;color:#3d342d;margin:12px 0 16px}
+.chain{display:flex;gap:6px;flex-wrap:wrap}
+.n{flex:1;min-width:96px;padding:10px;border:1px solid var(--grey);border-radius:4px;font:400 11.5px/1.35 'IBM Plex Mono',monospace;background:#f5eee8;color:#3d342d}
+.card.play .n{animation:lit .5s var(--d) forwards}
+@keyframes lit{to{background:var(--wine);color:var(--cream);border-color:var(--wine)}}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font:400 11.5px 'IBM Plex Mono',monospace;color:var(--muted)}
+.stats b{display:block;font:700 22px 'Fraunces',serif;color:var(--ink)}
+svg.sig{width:100%;height:auto;background:#f5eee8;border:1px solid var(--grey);border-radius:4px}
+.sig path{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:700;stroke-dashoffset:700}
+.card.play .sig path{animation:draw 3s ease-out forwards}
+.sig .hit{opacity:0}.card.play .sig .hit{animation:show .4s 2.8s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes show{to{opacity:1}}
+.sig text{font:11px 'IBM Plex Mono',monospace;fill:var(--wine)}
+.btns{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.go{display:inline-block;background:var(--wine);color:var(--cream);text-decoration:none;border:1px solid var(--wine);padding:10px 16px;border-radius:4px;font:500 13px 'IBM Plex Mono',monospace}
+.go.alt{background:transparent;color:var(--wine)}
+.go:focus-visible,#dots button:focus-visible,.x:focus-visible,#plain:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+
+/* throw game */
+#game{position:fixed;inset:0;z-index:20;display:none;background:rgba(44,36,30,.88)}
+#game.on{display:block}
+#pick,#msg{position:absolute;left:50%;transform:translateX(-50%);background:var(--cream);border-radius:8px;padding:24px;width:min(360px,90vw);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:'Fraunces',Georgia,serif}
+#pick{top:50%;transform:translate(-50%,-50%)}
+#pick h3,#msg h3{font-size:24px}#pick p{font-size:13px;margin:8px 0 16px;color:var(--muted)}
+#pick .go{display:block;width:100%;margin-top:10px;cursor:pointer}
+#msg{top:14%;display:none}#msg .go{margin-top:14px;cursor:pointer}
+#sheet,#ball,#bin,#hoop{visibility:hidden}
+#sheet{position:fixed;z-index:5;background:var(--cream) repeating-linear-gradient(0deg,transparent 0 18px,rgba(127,5,25,.18) 18px 20px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#ball{position:fixed;z-index:2;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px}
+#bin{position:fixed;z-index:3;right:max(14px,7vw);bottom:calc(14px + env(safe-area-inset-bottom,0px));width:76px}
+#hoop{position:fixed;z-index:3;right:max(10px,4vw);top:16vh;width:120px;height:150px}
+#hoop svg{position:absolute;inset:0;width:100%;height:100%}
+#hoop .bk{z-index:1}#hoop .fr{z-index:3}
+svg{display:block}
+
+@media (max-width:700px){
+  #paper{width:340px;min-height:0}
+  #front{padding:26px 24px 24px}
+  :is(#paper,#sheet) h1{font-size:28px}:is(#paper,#sheet) .role{font-size:10px}
+  .row{flex-wrap:wrap;gap:2px 12px}.row span{white-space:normal}
+  .sk{grid-template-columns:1fr}
+  #cbox{padding:0 26px}:is(#paper,#sheet) #cbox h2{font-size:30px}:is(#paper,#sheet) #cbox p{font-size:12px}
+  .slot{padding:16px 26px 16px 12px}.card{padding:20px}.card h3{font-size:22px}.card p{font-size:13px}
+  .stats{gap:14px}.stats b{font-size:19px}.go{padding:10px 14px;font-size:12px}
+  #dots{right:7px;gap:9px}#hint{font-size:11px}#plain{font-size:11px;padding:7px 12px}
+  #hoop{width:96px;height:120px}#bin{width:64px}
+}
+@media (prefers-reduced-motion:reduce){.card.play .n,.card.play .sig path,.card.play .sig .hit{animation-duration:.01s;animation-delay:0s}}
+#sheet{background:var(--cream);overflow:hidden}
+#fxc{position:fixed;inset:0;z-index:40;pointer-events:none}#msg{z-index:50}
+.play{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.gm{border:1px solid var(--wine);background:transparent;color:var(--wine);border-radius:4px;padding:8px 11px;font:500 12px 'IBM Plex Mono',monospace}
+.gm:hover{background:var(--wine);color:var(--cream)}
+.plain #track,.plain #fl,.plain #fr,.plain #flabel,.plain #dots,.plain #hint{display:none}
+.plain #stage{position:static;min-height:100vh;display:flow-root}
+.plain #paper{position:relative;left:auto;top:auto;transform:none;margin:64px auto 40px;width:min(640px,100vw - 24px);cursor:default}
+.plain #back{position:static;display:block;padding:10px 0 30px}
+</style>
+</head>
+<body>
+<div id="track"></div>
+<div id="stage">
+  <div id="fl"></div><div id="fr"></div>
+  <div id="flabel">Aryan Mandlik<small>Résumé · 2027</small></div>
+<article id="paper" aria-label="Resume of Aryan Jayant Mandlik"><div id="front">
+    <section id="head">
+      <h1>Aryan Jayant Mandlik</h1>
+      <p class="role">Chennai, Tamil Nadu · aryanmandlik729@gmail.com</p>
+      <p class="role"><a href="https://github.com/aryannlol" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/aryan-mandlik-7985192b6" target="_blank" rel="noopener">LinkedIn</a></p>
+    </section>
+    <section id="edu">
+      <h2>Education</h2>
+      <div class="row"><b>SRM Institute of Science and Technology, Kattankulathur</b><span>Expected May 2027</span></div>
+      <p>B.Tech in Computer Science and Engineering · CGPA 8.96/10</p>
+    </section>
+    <section id="exp">
+      <h2>Experience</h2>
+      <div class="row"><b>AI/ML Intern, Cloud.in (Hostin Services Private Limited)</b><span>Dec 2025 – Jan 2026</span></div>
+      <ul>
+        <li class="b">Built an internal knowledge base query assistant using RAG with Python, FastAPI, ChromaDB and LLaMA 3, letting employees query company documents in natural language and get source-grounded answers. <a href="https://drive.google.com/file/d/1VJZkcv-RB4Wx2bPjGApQy8vTlzyQQuzZ/view?usp=sharing" target="_blank" rel="noopener">Letter</a></li>
+        <li class="b">Developed an end-to-end ingestion pipeline: upload, chunking, embedding via Sentence Transformers and vector storage in ChromaDB; collaborated on system integration and response quality testing.</li>
+      </ul>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li class="proj" id="p1">
+          <div class="row"><b>Multi-Agent Persona Conversational AI Assistant</b><span>Published, ICDSBS 2026</span></div>
+          <ul>
+            <li class="b">Built a guided parallel multi-agent QA system (Python, LangGraph, LangChain, Ollama, ChromaDB) with 5 persona agents and a 4-tier intent-routing cascade combining rule-based, ML and semantic-similarity routing.</li>
+            <li class="b">Reached 93.33% routing accuracy and 85.09% F1 on a 210-query held-out test set; supervisor-based synthesis with confidence-aware refinement and RAG retrieval.</li>
+          </ul>
+        </li>
+        <li class="proj" id="p2">
+          <div class="row"><b>AI Agent Marketplace</b><span>FastAPI · Ollama</span></div>
+          <ul>
+            <li class="b">Built a full-stack marketplace (FastAPI, HTML, CSS, vanilla JavaScript) with authenticated access to three agents for resume analysis, job matching and cover letter generation.</li>
+            <li class="b">Designed an agent-to-agent workflow where one agent’s output feeds the next, with structured JSON rendering and deterministic fallback logic.</li>
+          </ul>
+        </li>
+        <li class="proj" id="p3">
+          <div class="row"><b>AI-Driven OEE Monitoring System for Industrial IoT</b><span>Published, ICCBI 2026</span></div>
+          <ul>
+            <li class="b">Built a 3-tier IIoT predictive maintenance system (Python, MQTT, HIL simulation) pairing Isolation Forest anomaly detection with an LSTM that predicts failures 73.5 minutes ahead, plus automated TPM 5-Why reports.</li>
+            <li class="b">Reached 95.0% F1 in anomaly detection on 8,800 sensor samples; proactive maintenance gave a 21.5% OEE improvement over reactive baselines.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section id="skills">
+      <h2>Technical skills</h2>
+      <div class="sk">
+        <p><b>Languages:</b> Python, Java, C++, JavaScript, SQL</p>
+        <p><b>Frontend:</b> React.js, HTML, CSS</p>
+        <p><b>Backend:</b> FastAPI, Flask, REST APIs</p>
+        <p><b>Databases:</b> MySQL, PostgreSQL, ChromaDB</p>
+        <p><b>Core:</b> DSA, OOP, Git</p>
+        <p><b>AI/ML:</b> Scikit-learn, LangChain, LangGraph, RAG, LLMs, Ollama</p>
+      </div>
+    </section>
+    <section id="certs">
+      <h2>Certifications</h2>
+      <div class="row"><b><a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=8F2B89D8294FFE56C418E1B0FDD2ED40F15FCD8523B3012854957F2D47E45977" target="_blank" rel="noopener">Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</a></b><span>Oct 2025</span></div>
+      <div class="row"><b><a href="https://www.credly.com/badges/fecb19fa-9152-4ffb-b86c-911e7bb050d1/print-mongo" target="_blank" rel="noopener">MongoDB Certified Associate Developer</a></b><span>Apr 2026</span></div>
+    </section>
+  </div>
+<div id="back"><div id="cbox"><h2>Let’s talk.</h2><p>Thanks for reading. I’m finishing my B.Tech in May 2027 and open to AI/ML roles.</p><p><b>Email</b><br><a href="mailto:aryanmandlik729@gmail.com">aryanmandlik729@gmail.com</a></p><p><b>Play with the resume</b></p><div class="play"><button class="gm" data-m="bin">🗑 Dustbin</button><button class="gm" data-m="hoop">🏀 Hoop</button><button class="gm" data-m="cut">✂️ Cut</button><button class="gm" data-m="gun">🔫 Shoot</button><button class="gm" data-m="shred">📄 Shredder</button></div><p><b>Location</b><br>Chennai, Tamil Nadu</p><p><b>Elsewhere</b><br><a href="https://github.com/aryannlol" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/aryan-mandlik-7985192b6" target="_blank" rel="noopener">LinkedIn</a></p></div></div>
+</article>
+</div>
+<!-- Project cards -->
+<div class="slot" id="c0" role="dialog" aria-label="Multi-Agent Persona Conversational AI Assistant"><div class="card"><button class="x" aria-label="Close">×</button>
+  <h3>Multi-Agent Persona Conversational AI Assistant</h3><span class="badge">Published, ICDSBS 2026</span>
+  <p>Five persona agents answer in parallel while a 4-tier cascade decides who should handle each query.</p>
+  <div class="chain">
+    <div class="n" style="--d:.3s">Rule-based routing</div><div class="n" style="--d:.9s">ML classifier</div>
+    <div class="n" style="--d:1.5s">Semantic similarity</div><div class="n" style="--d:2.1s">Supervisor synthesis</div>
+  </div>
+  <div class="stats"><div><b>93.33%</b>routing accuracy</div><div><b>85.09%</b>F1-score</div><div><b>210</b>test queries</div></div>
+  <div class="btns"><a class="go" href="https://github.com/aryannlol/multi-persona-agent" target="_blank" rel="noopener">Open on GitHub</a><a class="go alt" href="https://ieeexplore.ieee.org/document/11634648" target="_blank" rel="noopener">Read the paper</a></div>
+</div></div>
+
+<div class="slot" id="c1" role="dialog" aria-label="AI Agent Marketplace"><div class="card"><button class="x" aria-label="Close">×</button>
+  <h3>AI Agent Marketplace</h3>
+  <p>Sign in, pick an agent, and chain them: each agent’s output becomes the next one’s input.</p>
+  <div class="chain">
+    <div class="n" style="--d:.3s">Resume analysis agent</div><div class="n" style="--d:1.1s">Job matching agent</div><div class="n" style="--d:1.9s">Cover letter agent</div>
+  </div>
+  <div class="stats"><div><b>3</b>specialised agents</div><div><b>JSON</b>structured output</div><div><b>Ollama</b>local models</div></div>
+  <div class="btns"><a class="go" href="https://github.com/aryannlol/ai-agent-marketplace" target="_blank" rel="noopener">Open on GitHub</a></div>
+</div></div>
+
+<div class="slot" id="c2" role="dialog" aria-label="AI-Driven OEE Monitoring System"><div class="card"><button class="x" aria-label="Close">×</button>
+  <h3>AI-Driven OEE Monitoring System for Industrial IoT</h3><span class="badge">Published, ICCBI 2026</span>
+  <p>Sensor data streams in over MQTT; the models flag the drift and predict the failure before it happens.</p>
+  <svg class="sig" viewBox="0 0 300 90" role="img" aria-label="Sensor signal drifting before a predicted failure">
+    <path d="M0 50 L20 48 L40 52 L60 47 L80 51 L100 46 L120 50 L140 44 L160 48 L180 38 L200 42 L215 28 L230 34 L245 18 L260 24 L275 10 L300 14"/>
+    <g class="hit"><circle cx="215" cy="28" r="5" fill="none" stroke="#7f0519" stroke-width="2"/><text x="60" y="80">anomaly flagged → failure predicted 73.5 min ahead</text></g>
+  </svg>
+  <div class="stats"><div><b>95.0%</b>anomaly F1</div><div><b>73.5 min</b>lead time</div><div><b>21.5%</b>OEE improvement</div></div>
+  <div class="btns"><a class="go" href="https://github.com/aryannlol/oee_monitoring" target="_blank" rel="noopener">Open on GitHub</a><a class="go alt" href="https://ieeexplore.ieee.org/document/11619905" target="_blank" rel="noopener">Read the paper</a></div>
+</div></div>
+
+
+<div id="dots"></div>
+<div id="hint">Scroll to open the folder</div>
+<button id="plain">👁 Plain view</button>
+
+<div id="game">
+    <div id="msg"><button class="x" aria-label="Close">×</button><h3></h3><button class="go">Get it back</button></div>
+  <div id="sheet"></div><canvas id="fxc"></canvas>
+  <div id="bin"><svg viewBox="0 0 76 100"><path d="M10 24h56l-6 72H16z" fill="#cfcac4" stroke="#2c241e" stroke-width="3" stroke-linejoin="round"/><path d="M26 34l3 52M38 34v52M50 34l-3 52" stroke="#2c241e" stroke-width="3" fill="none"/><rect x="4" y="14" width="68" height="10" rx="4" fill="#2c241e"/></svg></div>
+  <div id="hoop">
+    <svg class="bk" viewBox="0 0 120 150"><rect x="96" y="6" width="14" height="96" rx="2" fill="#ece1d9"/><rect x="99" y="52" width="8" height="30" fill="#7f0519"/><rect x="104" y="100" width="4" height="50" fill="#cfcac4"/></svg>
+    <svg class="fr" viewBox="0 0 120 150"><g id="net"><path d="M30 72l10 42M46 72l6 42M62 72v42M78 72l-6 42M94 72l-10 42M33 90h58M38 106h48" stroke="#ece1d9" stroke-width="2" fill="none"/></g><rect x="28" y="68" width="68" height="6" rx="3" fill="#7f0519"/></svg>
+  </div>
+  <svg id="ball" viewBox="0 0 40 40"><polygon points="20,2 27,7 36,6 34,15 39,22 31,27 32,37 22,33 14,38 11,29 2,25 8,18 4,9 13,10" fill="#ece1d9" stroke="#2c241e" stroke-width="2" stroke-linejoin="round"/><path d="M12 14l10 6-6 10M26 12l-2 12" stroke="#a8b080" stroke-width="2" fill="none"/></svg>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
+const $ = s => document.querySelector(s), paper = $('#paper'), root = document.documentElement;
+let FW = 340, FH = 440;
+const layout = () => {
+  FW = Math.min(400, innerWidth * 0.8, innerHeight * 0.66 / 1.3); FH = FW * 1.3;
+  root.style.setProperty('--fw', FW + 'px'); root.style.setProperty('--fh', FH + 'px');
+};
+layout();
+const fit = () => Math.min(innerHeight * 0.88 / paper.offsetHeight, innerWidth * 0.9 / paper.offsetWidth);
+const s0 = () => Math.min(0.84 * FW / paper.offsetWidth, 0.88 * FH / paper.offsetHeight);
+const focus = (sel, mult) => {
+  const el = $(sel);
+  const dx = el.offsetLeft + el.offsetWidth / 2 - paper.offsetWidth / 2;
+  const dy = el.offsetTop + el.offsetHeight / 2 - paper.offsetHeight / 2;
+  const s = Math.min(fit() * mult, innerWidth * 0.82 / el.offsetWidth, innerHeight * 0.8 / el.offsetHeight);
+  return { s, x: -dx * s, y: -dy * s };
+};
+const to = (sel, mult) => ({
+  scale: () => focus(sel, mult).s, x: () => focus(sel, mult).x, y: () => focus(sel, mult).y,
+  rotation: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.inOut'
+});
+
+gsap.set(paper, { xPercent: -50, yPercent: -50, transformPerspective: 1400 });
+gsap.set('#fl', { xPercent: -100, yPercent: -50, transformOrigin: '0% 50%', transformPerspective: 1100 });
+gsap.set('#fr', { yPercent: -50, transformOrigin: '100% 50%', transformPerspective: 1100 });
+gsap.set('#flabel', { xPercent: 0 });
+gsap.set('#back', { autoAlpha: 0 });
+
+const tl = gsap.timeline({ scrollTrigger: { trigger: '#track', start: 'top top', end: 'bottom bottom', scrub: 0.8, invalidateOnRefresh: true } });
+// closed folder opens from the middle: halves swing out and vanish, paper (already between them) grows
+tl.to('#flabel', { autoAlpha: 0, duration: 0.3 })
+  .to('#fl', { rotationY: -112, autoAlpha: 0, duration: 1, ease: 'power2.inOut' }, '<')
+  .to('#fr', { rotationY: 112, autoAlpha: 0, duration: 1, ease: 'power2.inOut' }, '<')
+  .fromTo(paper, { scale: () => s0(), x: 0, y: 0, rotation: 0 }, { scale: () => fit(), duration: 1.1, ease: 'power2.out' }, '>-0.55').addLabel('res')
+  .to(paper, to('#head', 2.6)).addLabel('name')
+  .to(paper, to('#exp', 2.2)).addLabel('exp');
+['#p1', '#p2', '#p3'].forEach((sel, i) => {
+  tl.to(paper, to(sel, 2.4)).addLabel('z' + i)
+    .to('#c' + i, { autoAlpha: 1, duration: 0.5 })
+    .to(paper, { opacity: 0.1, filter: 'blur(6px)', duration: 0.5 }, '<').addLabel('c' + i)
+    .to({}, { duration: 0.6 })
+    .to('#c' + i, { autoAlpha: 0, duration: 0.3 });
+});
+tl.to(paper, to('#skills', 2.2)).addLabel('sk')
+  .to(paper, to('#certs', 2.4)).addLabel('ce')
+  .to(paper, { scale: () => fit(), x: 0, y: 0, rotation: 0, duration: 1, ease: 'power2.inOut' })
+  // turn the page over: contact details live on the back
+  .to(paper, { rotationY: 90, duration: 0.5, ease: 'power1.in' })
+  .set('#front', { autoAlpha: 0 }).set('#back', { autoAlpha: 1 }).set(paper, { rotationY: -90 })
+  .to(paper, { rotationY: 0, duration: 0.5, ease: 'power1.out' })
+  .to(paper, to('#cbox', 1.8)).addLabel('ct')
+  .to({}, { duration: 0.6 });
+
+const total = tl.duration(), st = tl.scrollTrigger, L = n => tl.labels[n];
+const steps = [['Folder', 0], ['Resume', L('res')], ['Name', L('name')], ['Experience', L('exp')],
+  ['Project 1', L('c0')], ['Project 2', L('c1')], ['Project 3', L('c2')], ['Skills', L('sk')],
+  ['Certifications', L('ce')], ['Contact', L('ct')]];
+const posT = t => st.start + (st.end - st.start) * t / total;
+const pos = i => posT(steps[i][1]);
+const go = top => window.scrollTo({ top, behavior: 'smooth' });
+
+const dots = $('#dots');
+steps.forEach(([name], i) => {
+  const b = document.createElement('button'); b.title = name; b.setAttribute('aria-label', name);
+  b.onclick = () => go(pos(i)); dots.appendChild(b);
+});
+const current = () => { const t = tl.time(); let c = 0; steps.forEach(([, v], i) => { if (t >= v - 0.3) c = i; }); return c; };
+ScrollTrigger.create({ trigger: '#track', start: 'top top', end: 'bottom bottom', onUpdate: () => {
+  const c = current(), t = tl.time();
+  [...dots.children].forEach((d, i) => d.classList.toggle('on', i === c));
+  [0, 1, 2].forEach(i => $('#c' + i + ' .card').classList.toggle('play', t >= L('z' + i)));
+  $('#hint').style.opacity = t < 0.05 ? 0.85 : 0;
+}});
+// close (x) on a project card: back to the zoomed project
+document.querySelectorAll('.slot .x').forEach((b, i) => b.onclick = () => go(posT(L('z' + i))));
+
+const next = () => go(pos(Math.min(current() + 1, steps.length - 1)));
+$('#fl').onclick = $('#fr').onclick = next;
+paper.addEventListener('click', e => {
+  if (e.target.closest('a,button') || document.body.classList.contains('plain')) return;
+  const p = e.target.closest('.proj');
+  if (p && current() >= 1) return go(pos(4 + ['p1', 'p2', 'p3'].indexOf(p.id)));
+  next();
+});
+addEventListener('resize', () => { layout(); ScrollTrigger.refresh(); });
+
+/* ---- plain view ---- */
+const plainBtn = $('#plain');
+plainBtn.onclick = () => {
+  if (!document.body.classList.toggle('plain')) return location.reload();
+  ScrollTrigger.getAll().forEach(s => s.kill()); tl.kill();
+  gsap.set([paper, '#front', '#back', '#fl', '#fr', '#flabel'], { clearProps: 'all' });
+  scrollTo(0, 0); plainBtn.textContent = '✨ Animated view';
+};
+
+/* ---- destroy the resume ---- */
+const game = $('#game'), ball = $('#ball'), sheet = $('#sheet'), msg = $('#msg'), cv = $('#fxc'), c2 = cv.getContext('2d');
+let g, junk = [], ivs = [], P = [], raf = 0, S, flying = false;
+const R = (a, b) => a + Math.random() * (b - a);
+const mk = (css, html = '') => { const d = document.createElement('div'); d.style.cssText = 'position:fixed;' + css; d.innerHTML = html; game.appendChild(d); junk.push(d); return d; };
+const sh = (css) => { const d = document.createElement('div'); d.style.cssText = 'position:absolute;' + css; sheet.appendChild(d); return d; };
+const shake = a => gsap.fromTo(game, { x: R(-a, a), y: R(-a, a) }, { x: 0, y: 0, duration: .35, ease: 'elastic.out(1,.25)' });
+// particles: t 'r' = paper chip, 'c' = round blob/dust
+const emit = (x, y, n, o = {}) => {
+  for (let i = 0; i < n; i++) {
+    const a = o.a != null ? o.a + R(-(o.s || 3.14), o.s || 3.14) : R(0, 6.28), v = R(o.v0 || 2, o.v1 || 9);
+    P.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, l: 1, d: R(.012, .03) * (o.d || 1), z: R(o.z0 || 2, o.z1 || 6), c: o.c || '#ece1d9', gr: o.gr ?? .25, t: o.t || 'r', r: R(0, 6) });
+  }
+  if (!raf) loop();
+};
+const loop = () => {
+  c2.clearRect(0, 0, cv.width, cv.height); P = P.filter(p => p.l > 0);
+  P.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += p.gr; p.vx *= .985; p.l -= p.d; p.r += p.vx * .1;
+    c2.globalAlpha = Math.max(0, Math.min(1, p.l * 1.5)); c2.fillStyle = p.c; c2.save(); c2.translate(p.x, p.y); c2.rotate(p.r);
+    if (p.t === 'c') { c2.beginPath(); c2.arc(0, 0, p.z, 0, 6.3); c2.fill(); } else c2.fillRect(-p.z, -p.z * .6, p.z * 2, p.z * 1.2);
+    c2.restore();
+  });
+  raf = P.length ? requestAnimationFrame(loop) : 0;
+};
+const endGame = () => {
+  g && g.kill(); ivs.forEach(clearInterval); ivs = []; junk.forEach(d => d.remove()); junk = []; P = []; flying = false;
+  game.classList.remove('on'); document.body.style.overflow = '';
+  if (sheet.parentNode !== game) game.appendChild(sheet);
+  sheet.replaceChildren(); gsap.killTweensOf([game, sheet, ball, '#bin', '#hoop', '#net']);
+  gsap.set([sheet, ball, '#bin', '#hoop', '#net', '#game'], { clearProps: 'all' });
+  msg.style.display = 'none'; gsap.set('#stage', { opacity: 1 });
+};
+$('#msg .x').onclick = $('#msg .go').onclick = endGame;
+document.querySelectorAll('.gm').forEach(b => b.onclick = e => { e.stopPropagation(); play(b.dataset.m); });
+const done = t => { flying = false; msg.querySelector('h3').textContent = t; msg.style.display = 'block'; gsap.from(msg, { y: -20, opacity: 0, duration: .4 }); };
+
+function play(m) {
+  endGame(); document.body.style.overflow = 'hidden'; game.classList.add('on'); cv.width = innerWidth; cv.height = innerHeight;
+  const pw = paper.offsetWidth, ph = paper.offsetHeight, k = Math.min(innerWidth * .8 / pw, innerHeight * .8 / ph), w = pw * k, h = ph * k, cx = innerWidth / 2, cy = innerHeight / 2;
+  S = { w, h, cx, cy, L: cx - w / 2, T: cy - h / 2 };
+  const c = $('#front').cloneNode(true); c.style.cssText = `visibility:visible;opacity:1;width:${pw}px;transform:scale(${k});transform-origin:0 0`;
+  sheet.replaceChildren(c);
+  Object.assign(sheet.style, { left: S.L + 'px', top: S.T + 'px', width: w + 'px', height: h + 'px' });
+  gsap.set(sheet, { autoAlpha: 1 });
+  g = gsap.timeline(); g.to('#game', { backgroundColor: '#2c241e', duration: .4 }); gsap.to('#stage', { opacity: 0, duration: .4 });
+  ({ bin: throwIt, hoop: throwIt, cut, gun, shred })[m](m);
+}
+
+function throwIt(m) {
+  const { w, h, cx, cy } = S, bin = m === 'bin', el = $(bin ? '#bin' : '#hoop'), er = el.getBoundingClientRect();
+  const tx = bin ? er.left + er.width / 2 : er.left + er.width * 62 / 120, ty = bin ? er.top + er.height * .12 : er.top + er.height * 70 / 150, fl = innerHeight - 34, wall = 26;
+  gsap.set(sheet, { clipPath: 'polygon(0 0,50% 0,100% 0,100% 50%,100% 100%,50% 100%,0 100%,0 50%)' });
+  const poly = ['polygon(5% 3%,50% 9%,95% 1%,97% 48%,93% 97%,50% 91%,3% 98%,7% 52%)', 'polygon(14% 8%,50% 18%,88% 6%,92% 46%,84% 90%,50% 80%,12% 92%,18% 50%)', 'polygon(24% 16%,50% 26%,78% 14%,84% 46%,76% 82%,50% 74%,22% 84%,28% 50%)'];
+  g.to(el, { autoAlpha: 1, duration: .3 }, .3);
+  // crumple in three tightening squeezes, each with a crunch of paper chips
+  poly.forEach((p, i) => {
+    g.to(sheet, { clipPath: p, scale: [.82, .58, .36][i], rotation: [-7, 26, -38][i], filter: `brightness(${[.95, .88, .8][i]}) contrast(1.15)`, duration: .4, ease: 'power3.out' })
+     .add(() => { emit(cx, cy, 16, { v1: 8 }); emit(cx, cy, 6, { c: 'rgba(236,225,217,.5)', t: 'c', z0: 6, z1: 12, v1: 3, gr: 0, d: .7 }); shake(5 + i * 3); }, '<.05')
+     .to(sheet, { x: R(-12, 12), y: R(-12, 12), duration: .08, yoyo: true, repeat: 1 });
+  });
+  g.to(sheet, { scale: 46 / Math.max(w, h), rotation: 560, filter: 'brightness(.75) contrast(1.2)', duration: .4, ease: 'power2.in' })
+   .set(sheet, { autoAlpha: 0 }).set(ball, { autoAlpha: 1, x: cx, y: cy, rotation: 0, scale: 1 })
+   .add(() => emit(cx, cy, 14, { v1: 6 }))
+   // wind-up, then hurl it at the wall
+   .to(ball, { x: cx + 50, y: cy + 28, rotation: -50, scale: 1.12, duration: .3, ease: 'power2.out' }).add(() => flying = true).addLabel('t')
+   .to(ball, { rotation: 1100, duration: 2.6, ease: 'none' }, 't')
+   .to(ball, { x: wall, duration: .5, ease: 'none' }, 't')
+   .to(ball, { y: cy - 150, duration: .25, ease: 'power2.out' }, 't').to(ball, { y: cy - 60, duration: .25, ease: 'power2.in' }, 't+=.25')
+   .add(() => { emit(wall, gsap.getProperty(ball, 'y'), 12, { a: 0, s: 1.3, v1: 6, c: '#cfcac4', t: 'c' }); shake(7); }, 't+=.5')
+   .to(ball, { scaleX: .65, scaleY: 1.3, duration: .07, yoyo: true, repeat: 1 }, 't+=.5')
+   .to(ball, { x: tx, duration: .9, ease: 'none' }, 't+=.57')
+   .to(ball, { y: (bin ? Math.min(cy - 60, ty) : ty) - 190, duration: .45, ease: 'power2.out' }, 't+=.57')
+   .to(ball, { y: ty, duration: .45, ease: 'power2.in' }, 't+=1.02');
+  g.eventCallback('onUpdate', () => flying && emit(gsap.getProperty(ball, 'x'), gsap.getProperty(ball, 'y'), 1, { v0: .2, v1: 1, c: 'rgba(236,225,217,.55)', t: 'c', z0: 2, z1: 5, gr: 0, d: 2 }));
+  if (bin) {
+    g.add(() => { flying = false; emit(tx, ty, 18, { c: '#cfcac4', a: -1.57, s: 1, v1: 6 }); }).to(ball, { y: ty + 70, scale: .7, duration: .2, ease: 'power1.out' }).set(ball, { autoAlpha: 0 })
+     .to('#bin', { rotation: 7, transformOrigin: '50% 100%', duration: .07, yoyo: true, repeat: 5 }).add(() => done('Straight into the bin.'));
+  } else {
+    g.to(ball, { y: ty + 55, duration: .25, ease: 'power1.out' }).to('#net', { scaleY: 1.35, transformOrigin: '50% 0%', duration: .12, yoyo: true, repeat: 1 }, '<').addLabel('fall')
+     .add(() => { flying = false; emit(tx, ty, 26, { c: '#a8b080', a: -1.57, s: 1.2, v1: 9, gr: .3 }); emit(tx, ty, 26, { c: '#7f0519', a: -1.57, s: 1.2, v1: 9, gr: .3 }); }, 'fall')
+     .to(ball, { x: tx - 110, duration: 1.6, ease: 'power1.out' }, 'fall').to(ball, { y: fl, duration: .4, ease: 'power2.in' }, 'fall')
+     .to(ball, { y: fl - 90, duration: .25, ease: 'power2.out' }).to(ball, { y: fl, duration: .25, ease: 'power2.in' })
+     .to(ball, { y: fl - 35, duration: .17, ease: 'power2.out' }).to(ball, { y: fl, duration: .17, ease: 'power2.in' }).add(() => done('Swish. Nothing but net.'));
+  }
+}
+
+function cut() {
+  const { L, T, w, h } = S, cols = 4, rows = 5, pcs = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    const d = sheet.cloneNode(true); d.style.clipPath = `inset(${r / rows * 100}% ${100 - (c + 1) / cols * 100}% ${100 - (r + 1) / rows * 100}% ${c / cols * 100}%)`;
+    game.appendChild(d); junk.push(d); pcs.push([d, (c + .5) / cols - .5, (r + .5) / rows - .5]);
+  }
+  gsap.set(sheet, { autoAlpha: 0 });
+  const sc = mk('left:0;top:0;font-size:46px;margin:-23px 0 0 -23px;z-index:45;filter:drop-shadow(0 4px 4px #0008)', '✂️');
+  gsap.set(sc, { x: L - 60, y: T });
+  const lines = [];
+  for (let i = 1; i < rows; i++) lines.push([L - 30, T + h * i / rows, L + w + 30, T + h * i / rows, 1]);
+  for (let i = 1; i < cols; i++) lines.push([L + w * i / cols, T - 30, L + w * i / cols, T + h + 30, 0]);
+  lines.forEach(([x0, y0, x1, y1, hz], i) => {
+    const ln = mk(`left:${x0}px;top:${y0}px;width:${hz ? w + 60 : 0}px;height:${hz ? 0 : h + 60}px;border-${hz ? 'top' : 'left'}:2px dashed #7f0519;transform-origin:0 0;z-index:44`), o = { t: 0 };
+    g.fromTo(o, { t: 0 }, { t: 1, duration: .55, ease: 'none', onUpdate() {
+      const x = x0 + (x1 - x0) * o.t, y = y0 + (y1 - y0) * o.t;
+      gsap.set(sc, { x, y, scale: 1 + .18 * Math.sin(o.t * 50) }); gsap.set(ln, { [hz ? 'scaleX' : 'scaleY']: o.t }); emit(x, y, 1, { v1: 3, z0: 1, z1: 3, d: 1.5 });
+    } }, i ? '>+.1' : '>+.5');
+  });
+  g.addLabel('sep', '>+.2');
+  pcs.forEach(([d, fx, fy]) => g.to(d, { x: fx * 50, y: fy * 50, rotation: R(-5, 5), duration: .45, ease: 'power2.out' }, 'sep'));
+  g.to(sc, { x: innerWidth + 80, duration: .5 }, 'sep');
+  pcs.forEach(([d, fx, fy]) => g.to(d, { x: '+=' + (fx * R(60, 200) + R(-30, 30)), y: '+=' + (innerHeight * .9 + R(0, 200)), rotation: R(-150, 150), duration: R(1.3, 2), ease: 'power2.in' }, 'sep+=.7'));
+  g.add(() => done('Cut to pieces.'), '>');
+}
+
+function gun() {
+  const { L, T, w, h, cy } = S, gw = Math.min(260, innerWidth * .42), gx = Math.min(L + w + 24, innerWidth - gw), gy = cy - gw * .3, mx = gx + gw * .02, my = gy + gw * .14;
+  const gn = mk(`left:${gx}px;top:${gy}px;width:${gw}px;z-index:42;transform-origin:2% 30%`, '<svg viewBox="0 0 260 120"><path d="M6 20h176v32H6z" fill="#4a4a4a" stroke="#111" stroke-width="3"/><path d="M96 52h86l22 62h-42z" fill="#2c241e"/><path d="M92 52v22h26" fill="none" stroke="#111" stroke-width="4"/><rect x="2" y="26" width="10" height="8" fill="#111"/></svg>');
+  g.fromTo(gn, { x: 320 }, { x: 0, duration: .5, ease: 'power2.out' }, .4);
+  const shot = () => {
+    const tx = L + w * R(.1, .9), ty = T + h * R(.08, .92), ang = Math.atan2(my - ty, mx - tx) * 180 / Math.PI;
+    gsap.to(gn, { rotation: ang, duration: .2, ease: 'power2.out', onComplete() {
+      const f = mk(`left:${mx}px;top:${my}px;width:90px;height:90px;margin:-45px 0 0 -45px;z-index:43;border-radius:50%;background:radial-gradient(#fff,#ffd24a 35%,transparent 70%)`);
+      gsap.fromTo(f, { scale: .3, autoAlpha: 1 }, { scale: 1.4, autoAlpha: 0, duration: .12 });
+      const tr = mk(`left:${tx}px;top:${ty}px;width:${Math.hypot(mx - tx, my - ty)}px;height:2px;background:linear-gradient(90deg,transparent,#ffe9a0);transform-origin:0 0;transform:rotate(${ang}deg);z-index:41`);
+      gsap.fromTo(tr, { autoAlpha: 1 }, { autoAlpha: 0, duration: .15 });
+      gsap.fromTo(gn, { x: 0 }, { x: 22, duration: .05, yoyo: true, repeat: 1 });
+      const px = tx - L, py = ty - T, s = R(14, 22);
+      sh(`left:${px - s / 2}px;top:${py - s / 2}px;width:${s}px;height:${s}px;border-radius:50%;background:radial-gradient(circle,#0b0805 40%,#5a4636 62%,rgba(90,70,54,0) 76%)`);
+      for (let i = 0; i < 4; i++) { const b = R(18, 60); sh(`left:${px + R(-34, 34) - b / 2}px;top:${py + R(-34, 34) - b / 2}px;width:${b}px;height:${b}px;border-radius:50%;background:radial-gradient(circle,rgba(150,8,20,.95) 35%,rgba(150,8,20,0) 70%)`); }
+      const dr = sh(`left:${px - 1}px;top:${py}px;width:3px;height:0;background:#8d0a16;border-radius:0 0 3px 3px`); gsap.to(dr, { height: R(25, 100), duration: R(1, 2.4), ease: 'power1.out' });
+      emit(tx, ty, 14, { a: Math.PI, s: 1, v1: 10, z1: 5 }); emit(tx, ty, 12, { c: '#8d0a16', t: 'c', a: Math.PI, s: 1.2, v1: 9, z0: 1.5, z1: 4, gr: .35 });
+      emit(tx, ty, 6, { c: 'rgba(255,255,255,.5)', t: 'c', v1: 3, z0: 4, z1: 9, d: .6, gr: 0 }); emit(mx, my, 8, { c: '#ffd24a', a: Math.PI, s: .6, v1: 12, z0: 1, z1: 2, gr: 0 });
+      gsap.fromTo(sheet, { x: -14, rotation: R(-3, 3) }, { x: 0, rotation: 0, duration: .5, ease: 'elastic.out(1,.3)' }); shake(9);
+    } });
+  };
+  for (let i = 0; i < 9; i++) g.add(shot, 1.1 + i * .7);
+  g.to(sheet, { y: innerHeight, rotation: 18, duration: 1.1, ease: 'power2.in' }, '>+.5').to(gn, { x: 340, duration: .5 }, '<').add(() => done('Riddled with holes.'));
+}
+
+function shred() {
+  const { w, h, cx, cy } = S, slot = innerHeight * .6, s = Math.min(1, (slot - 40) / h, innerWidth * .7 / w), ws = w * s, hs = h * s, mw = ws + 70;
+  const feed = mk(`left:0;top:0;width:100%;height:${slot}px;overflow:hidden;transform:translateZ(0);z-index:31`); feed.appendChild(sheet);
+  const m = mk(`left:${cx - mw / 2}px;top:${slot}px;width:${mw}px;height:100px;border-radius:12px;z-index:32;background:linear-gradient(#5a4e44,#2c241e);box-shadow:0 20px 40px #0008,inset 0 2px 0 #fff3`,
+    '<div style="position:absolute;left:14px;right:14px;top:9px;height:12px;border-radius:6px;background:#050302"></div><div style="position:absolute;right:18px;bottom:14px;width:10px;height:10px;border-radius:50%;background:#a8b080;box-shadow:0 0 10px #a8b080"></div><b style="position:absolute;left:18px;bottom:11px;font:500 11px monospace;color:#cfcac4">SHRED-O-MATIC</b>');
+  gsap.set(m, { y: 300, autoAlpha: 0 });
+  const spawn = () => {
+    const x = cx + R(-ws / 2, ws / 2), y0 = slot + 100, st = mk(`left:${x}px;top:${y0}px;width:${R(3, 6)}px;height:${R(30, 75)}px;z-index:29;background:linear-gradient(#ece1d9,#cfc4b8);border-left:1px solid rgba(127,5,25,.45)`);
+    gsap.to(st, { y: innerHeight - y0 - R(10, 70), x: R(-60, 60), rotation: R(-80, 80), duration: R(.8, 1.5), ease: 'power1.in' }); emit(x, slot, 1, { a: -1.57, s: .8, v1: 3 });
+  };
+  let iv;
+  g.to(m, { y: 0, autoAlpha: 1, duration: .5, ease: 'back.out(1.4)' }, .4)
+   .to(sheet, { scale: s, y: (slot - 14 - hs / 2) - cy, duration: .7, ease: 'power2.inOut' }, '>')
+   .add(() => { iv = setInterval(spawn, 45); ivs.push(iv); gsap.fromTo(m, { x: -1.5 }, { x: 1.5, duration: .04, repeat: 80, yoyo: true }); })
+   .to(sheet, { y: (slot + hs / 2 + 16) - cy, duration: 3.4, ease: 'power1.inOut' })
+   .add(() => { clearInterval(iv); gsap.killTweensOf(m); gsap.set(m, { x: 0 }); }, '>.3').add(() => done('Shredded. Beyond recovery.'), '>.8');
+}
+</script>
+</body>
+</html>
